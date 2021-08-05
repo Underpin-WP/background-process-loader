@@ -11,7 +11,7 @@
   ],
   "require": {
     "deliciousbrains/wp-background-processing": "^1.0",
-    "underpin/logger-loader": "^1.0",
+    "underpin/logger-loader": "^2.0",
     "underpin/underpin": "^1.2"
   },
   "autoload": {
