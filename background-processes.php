@@ -21,11 +21,11 @@ Underpin::attach( 'setup', new \Underpin\Factories\Observer( 'background_process
 
 
 	$plugin->loaders()->add( 'background_processes', [
-		'registry' => 'Underpin_Background_Processes\Loaders\Background_Processes',
+		'class' => 'Underpin_Background_Processes\Loaders\Background_Processes',
 	] );
 
 	$plugin->loaders()->add( 'async_requests', [
-		'registry' => 'Underpin_Background_Processes\Loaders\Async_Requests',
+		'class' => 'Underpin_Background_Processes\Loaders\Async_Requests',
 	] );
 	},
 ] ) );
