@@ -9,7 +9,7 @@
 
 namespace Underpin_Background_Processes\Loaders;
 
-use Underpin\Abstracts\Registries\Loader_Registry;
+use Underpin\Abstracts\Registries\Object_Registry;
 use Underpin_Background_Processes\Abstracts\Async_Request;
 use Underpin_Background_Processes\Abstracts\Background_Process;
 use WP_Error;
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since   1.0.0
  * @package Underpin_Background_Processes\Loaders
  */
-class Async_Requests extends Loader_Registry {
+class Async_Requests extends Object_Registry {
 
 	/**
 	 * @inheritDoc

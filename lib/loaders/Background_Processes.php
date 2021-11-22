@@ -9,7 +9,7 @@
 
 namespace Underpin_Background_Processes\Loaders;
 
-use Underpin\Abstracts\Registries\Loader_Registry;
+use Underpin\Abstracts\Registries\Object_Registry;
 use Underpin_Background_Processes\Abstracts\Background_Process;
 use WP_Error;
 use function Underpin\underpin;
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since   1.0.0
  * @package Underpin_Background_Processes\Loaders
  */
-class Background_Processes extends Loader_Registry {
+class Background_Processes extends Object_Registry {
 
 	/**
 	 * @inheritDoc

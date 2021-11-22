@@ -1,10 +1,13 @@
 <?php
+
+use Underpin\Abstracts\Underpin;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-
-add_action( 'underpin/before_setup', function ( $file, $class ) {
+Underpin::attach( 'setup', new \Underpin\Factories\Observer( 'background_processes', [
+	'update' => function ( Underpin $plugin ) {
 	if ( ! defined( 'UNDERPIN_BACKGROUND_PROCESS_PATH' ) ) {
 		define( 'UNDERPIN_BACKGROUND_PROCESS_PATH', trailingslashit( __DIR__ ) );
 	}
@@ -17,13 +20,12 @@ add_action( 'underpin/before_setup', function ( $file, $class ) {
 	require_once( UNDERPIN_BACKGROUND_PROCESS_PATH . 'lib/loaders/Background_Processes.php' );
 
 
-	Underpin\underpin()->get( $file, $class )->loaders()->add( 'background_processes', [
+	$plugin->loaders()->add( 'background_processes', [
 		'registry' => 'Underpin_Background_Processes\Loaders\Background_Processes',
 	] );
 
-	Underpin\underpin()->get( $file, $class )->loaders()->add( 'async_requests', [
+	$plugin->loaders()->add( 'async_requests', [
 		'registry' => 'Underpin_Background_Processes\Loaders\Async_Requests',
 	] );
-
-}, 20, 2 );
-
+	},
+] ) );
