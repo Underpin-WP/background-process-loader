@@ -3,16 +3,17 @@
  * Background Process Loader
  *
  * @since   1.0.0
- * @package Underpin_Background_Process\Loaders
+ * @package Underpin\Background_Process\Loaders
  */
 
 
-namespace Underpin_Background_Processes\Loaders;
+namespace Underpin\Background_Processes\Loaders;
 
-use Underpin\Abstracts\Registries\Loader_Registry;
-use Underpin_Background_Processes\Abstracts\Background_Process;
+use Underpin\Abstracts\Registries\Object_Registry;
+use Underpin\Loaders\Logger;
+use Underpin\Background_Processes\Abstracts\Background_Process;
 use WP_Error;
-use function Underpin\underpin;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -23,16 +24,16 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Database Registry
  *
  * @since   1.0.0
- * @package Underpin_Background_Processes\Loaders
+ * @package Underpin\Background_Processes\Loaders
  */
-class Background_Processes extends Loader_Registry {
+class Background_Processes extends Object_Registry {
 
 	/**
 	 * @inheritDoc
 	 */
-	protected $abstraction_class = '\Underpin_Background_Processes\Abstracts\Background_Process';
+	protected $abstraction_class = '\Underpin\Background_Processes\Abstracts\Background_Process';
 
-	protected $default_factory = '\Underpin_Background_Processes\Factories\Background_Process_Instance';
+	protected $default_factory = '\Underpin\Background_Processes\Factories\Background_Process_Instance';
 
 	/**
 	 * @inheritDoc
@@ -55,7 +56,7 @@ class Background_Processes extends Loader_Registry {
 		$instance = $this->get( $key );
 
 		if ( is_wp_error( $instance ) ) {
-			underpin()->logger()->log_wp_error( 'error', $instance );
+			Logger::log_wp_error( 'error', $instance );
 		}
 
 		return $instance->push_to_queue( $data );
@@ -65,7 +66,7 @@ class Background_Processes extends Loader_Registry {
 		$instance = $this->get( $key );
 
 		if ( is_wp_error( $instance ) ) {
-			underpin()->logger()->log_wp_error( 'error', $instance );
+			Logger::log_wp_error( 'error', $instance );
 			return $instance;
 		}
 

@@ -1,9 +1,10 @@
 <?php
 
 
-namespace Underpin_Background_Processes\Abstracts;
+namespace Underpin\Background_Processes\Abstracts;
 
-use function Underpin\underpin;
+
+use Underpin\Loaders\Logger;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -16,7 +17,7 @@ abstract class Background_Process extends \WP_Background_Process {
 	public function push_to_queue( $data ) {
 		$result = parent::push_to_queue( $data );
 
-		underpin()->logger()->log( 'info',
+		Logger::log( 'info',
 			'background_process_item_queued',
 			'A background process item has been queued for processing',
 			[
@@ -29,7 +30,7 @@ abstract class Background_Process extends \WP_Background_Process {
 
 	protected function task( $item ) {
 		$item = $this->task_action( $item );
-		underpin()->logger()->log(
+		Logger::log(
 			'debug',
 			'background_task_ran',
 			'A background task step ran.',
@@ -37,7 +38,7 @@ abstract class Background_Process extends \WP_Background_Process {
 		);
 
 		if ( is_wp_error( $item ) ) {
-			underpin()->logger()->log_wp_error( 'error', $item );
+			Logger::log_wp_error( 'error', $item );
 			$item = false;
 		}
 
@@ -47,7 +48,7 @@ abstract class Background_Process extends \WP_Background_Process {
 	protected function complete() {
 		parent::complete();
 
-		underpin()->logger()->log(
+		Logger::log(
 			'info',
 			'background_task_complete',
 			'A background task completed',
