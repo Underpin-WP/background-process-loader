@@ -1,10 +1,10 @@
 <?php
 
-namespace Underpin_Background_Processes\Factories;
+namespace Underpin\Background_Processes\Factories;
 
 
 use Underpin\Traits\Instance_Setter;
-use Underpin_Background_Processes\Abstracts\Async_Request;
+use Underpin\Background_Processes\Abstracts\Async_Request;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

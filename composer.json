@@ -10,12 +10,13 @@
     }
   ],
   "require": {
-    "underpin/underpin": "^2.0",
-    "deliciousbrains/wp-background-processing": "^1.0"
+    "deliciousbrains/wp-background-processing": "^1.0",
+    "underpin/underpin": "^2.0"
   },
   "autoload": {
+    "psr-4": {"Underpin\\Admin_Notices\\":  "lib/"},
     "files": [
-      "background-processes.php"
+      "bootstrap.php"
     ]
   }
 }
